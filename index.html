@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" lang="en">
+		<title>Week 2 - 2.2 Attributes - Activities</title>
+	</head>
+	<body>
+		<h1>Week 2 – 2.2 Attributes – Activities</h1>
+		<h2>Find the list of supported attributes for the &lt;area&gt; tag</h2>
+		<p>Besides the global HTML attributes, the &lt;area&gt; tag supports the following HTML<strong>5</strong> attributes: alt, coords, href, hreflang, media, rel, shape, target, and type.</p>
+		<h3>Observations when comparing the <a href="https://www.w3.org/2009/cheatsheet/">W3C cheatsheet</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes">MDN attribute reference list</a>:</h3>
+			<ul>
+				<li>The MDN attribute reference list shows also ‘non-HTML5 attributes’ and the attributes are listed in alphabetical order (this might be helpful), while the W3C cheatsheet shows only HTML5 attributes and does not list the supported attributes in a ‘logically’ order (at least to me).</li>
+				<li>The W3C cheatsheet does not list the <em>download</em> attribute in the initial enumeration of the supported HTML5 attributes for the &lt;area&gt; tag; if you follow the ‘Specification’ link the <em>download</em> attribute is listed, but <a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-area-element">there</a> the <em>media</em> attribute is missing.</li>
+			</ul>
+		<h2>Create two paragraphs with the same 'id' and run your code in Intel XDK. You can view your output in a Chrome window. What happens? We know the value of the 'id' attribute must be unique, so why does it behave the way it does?</h2>
+		<p>While using the Intel XDK, nothing ‘strange’ had happened to the output in the Chrome window (meaning same output as without using the same id attribute twice), but an “Id redefinition problem” was detected by the ‘HTMLHint’ extension (I have also tried other editors and browsers: same output).</p>
+		<img src="activity_on_id_attribute.JPG" alt="activity on the id attribute">
+		<h2>Does an attribute called 'src' exist? What is the purpose of this attribute and what are the elements it can be applied to?</h2>
+		<p>Yes. It defines the URL of embeddable content and can be applied to the following elements: audio, embed, iframe, img, input, script, source, track, video.</p>
+		<h2>Create an ordered list starting with the number 11. Then, reverse the list. Give it the following title: 'Activity List'.</h2>
+		<h3 title="Activity List">Ordered list starting with the number 11</h3>
+			<ol start="11" title="Activity List">
+				<li>I am item number 11 and I am satisfied with my number.</li>
+				<li>I am item number 12, but I would like to be number 10.</li>
+				<li>I am item number 13, but I would like to be number 9.</li>
+			</ol>
+		<h3 title="Activity List">Ordered list starting with the number 11 - reversed</h3>
+			<ol start="11" reversed title="Activity List">
+				<li>I am item number 11 and I am satisfied with my number.</li>
+				<li>I am item number 12, but I would like to be number 10.</li>
+				<li>I am item number 13, but I would like to be number 9.</li>
+			</ol>
+
+	</body>
+</html>
