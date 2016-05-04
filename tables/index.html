@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML tables</title>
+		<link rel="stylesheet" href="css/tables-style.css">
+	</head>
+	<body>
+		<h1>Summary on tables</h1>
+		<h2>Tables - HTML</h2>
+		<table border="1">
+			<caption>HTML tags - attributes and values</caption>
+			
+			<!--
+			<colgroup>
+				<col span="1" class="first-column">
+				<col span="3">
+			</colgroup>
+			-->
+			
+			<thead>
+				<tr>
+					<th>tag</th>
+					<th colspan="2">description</th>
+					<th colspan="2">attributes* | values</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td class="first-column">&lt;table&gt;</td>
+					<td>table</td>
+					<td>defines a table</td>
+					<td>border</td>
+					<td>| 0, 1</td>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;caption&gt;</td>
+					<td>caption</td>
+					<td>adds a title (should be used as first child element of &lt;table&gt;)</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th colspan="5" class="sub-heading">Column groups</th>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;colgroup&gt;</td>
+					<td>column group</td>
+					<td>groups columns</td>
+					<td>span</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;col&gt;</td>
+					<td>column</td>
+					<td>specifies property for each column within a &lt;colgroup&gt;</td>
+					<td>span</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<th colspan="5" class="sub-heading">Row groups</th>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;thead&gt;</td>
+					<td>table head</td>
+					<td>groups the header content</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;tbody&gt;</td>
+					<td>table body</td>
+					<td>groups the body content</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;tfoot&gt;</td>
+					<td>table footer</td>
+					<td>groups the footer content</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th colspan="5" class="sub-heading">Table row</th>
+				</tr>
+				<tr>
+					<td class="first-column">&lt;tr&gt;</td>
+					<td>table row</td>
+					<td>creates a table row</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th colspan="5" class="sub-heading">Table cells</th>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="3">&lt;th&gt;</td>
+					<td rowspan="3">table header</td>
+					<td rowspan="3">creates a table header cell<br>(default: bold, centered)</td>
+					<td>colspan</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<td>rowspan</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<td>scope</td>
+					<td>| row, col, rowgroup, colgroup, auto</td>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="3">&lt;td&gt;</td>
+					<td rowspan="3">table data</td>
+					<td rowspan="3">creates a table data cell<br>(default: regular, left-aligned)</td>
+					<td>colspan</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<td>rowspan</td>
+					<td>| positive integer number</td>
+				</tr>
+				<tr>
+					<td>headers</td>
+					<td>| id of &lt;th&gt; tag if any</td>
+				</tr>
+			</tbody>
+			
+			<tfoot>
+				<td colspan="5" class="footer">*besides global HTML attributes</td>
+			</tfoot>
+			
+		</table>
+		
+		<h2>Tables - CSS</h2>
+		<table border="1">
+			<caption>CSS declaration – properties and values</caption>
+			
+			<thead>
+				<tr>
+					<th>CSS property</th>
+					<th>description</th>
+					<th>values</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<th colspan="3" class="sub-heading">borders</th>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="5">border</td>
+					<td rowspan="2"><ul>
+							<li>defines width, style and color of borders</li>
+							<li>can be set independently to all borders (border-top, border-right, border-bottom, border-left)</li>
+							<li>shorthand property to set border-width, border-style and border-color together</li>
+						</ul></td>
+					<td>initial (sets property to default) </td>
+				</tr>
+				<tr>
+					<td>inherit (inherits property from parent element)</td>
+				</tr>
+				<tr>
+					<td>border-width</td>
+					<td>thin, medium (default), thick, number in px</td>
+				</tr>
+				<tr>
+					<td>border-style</td>
+					<td>none (default), hidden, dotted, dashed, solid, double, groove, ridge, inset, outset</td>
+				</tr>
+				<tr>
+					<td>border-color</td>
+					<td>color name/value (default: current-color-of-element), transparent</td>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="3">border-collapse</td>
+					<td rowspan="3">sets border lines into double or single</td>
+					<td>separate (default, double line)</td>
+				</tr>
+				<tr>
+					<td>collapse (single line)</td>
+				</tr>
+				<tr>
+					<td>initial (default value = double line)</td>
+				</tr>
+				<tr>
+					<th colspan="3" class="sub-heading">dimensions and distances</th>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="4">width, height</td>
+					<td rowspan="4">if not defined set by the browser based on the content of the cells</td>
+					<td>units of length</td>
+				</tr>
+				<tr>
+					<td>auto (default = calculated by browser)</td>
+				</tr>
+				<tr>
+					<td>initial (sets property to default)</td>
+				</tr>
+				<tr>
+					<td>inherit (inherits property from parent element)</td>
+				</tr>
+				<tr>
+					<td class="first-column">padding</td>
+					<td><ul>
+							<li>defines space between cell content and cell border</li>
+							<li>can be set independently to all sides (padding-top, padding-right, padding-bottom, padding-left)</li>
+							<li>shorthand property to set top, right, bottom and left padding together</li>
+						</ul></td>
+					<td>units of length</td>
+				</tr>
+				<tr>
+					<td class="first-column">border-spacing</td>
+					<td><ul>
+							<li>defines space between two cell borders for horizontal and vertical spacing</li>
+							<li>if only one value is provided, it is used for both</li>
+							<li>shorthand property to set horizontal and vertical spacing together</li>
+						</ul></td>
+					<td>units of length</td>
+				</tr>
+				<tr>
+					<td class="first-column" rowspan="6">overflow</td>
+					<td rowspan="6">defines if overflowed content is hidden or visible</td>
+					<td>visible (content is visible outside the parent element)</td>
+				</tr>
+				<tr>
+					<td>hidden (content is invisible and inaccessible)</td>
+				</tr>
+				<tr>
+					<td>scroll (content is hidden but a scroll bar is added to make it accessible)</td>
+				</tr>
+				<tr>
+					<td>auto (content is hidden but a scroll bar is added automatically to make it accessible)</td>
+				</tr>
+				<tr>
+					<td>initial (sets property to default)</td>
+				</tr>
+				<tr>
+					<td>inherit (inherits property from parent element)</td>
+				</tr>
+				<tr>
+					<th colspan="3" class="sub-heading">cell content</th>
+				</tr>
+				<tr>
+					<td class="first-column">text-align</td>
+					<td>aligns text of cells horizontally</td>
+					<td>left (default of &lt;td&gt; cells), center (default of &lt;th&gt; cells), right</td>
+				</tr>
+				<tr>
+					<td class="first-column">vertical-align</td>
+					<td>aligns text of cells vertically</td>
+					<td>top, middle (default), bottom</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		<br>
+		
+		<table border="1">
+			<caption>More styling properites</caption>
+			
+			<thead>
+				<tr>
+					<th>selector</th>
+					<th>description</th>
+					<th colspan="2">property | values</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<th class="sub-heading"></th>
+					<th class="sub-heading" colspan="3">alternating colors for table rows</th>
+				</tr>
+				<tr>
+					<td class="first-column">tr:nth-child(even)</td>
+					<td>applies the property to even rows</td>
+					<td>background-color </td>
+					<td>| color name/value</td>
+				</tr>
+				<tr>
+					<td class="first-column">tr:nth-child(odd)</td>
+					<td>applies the property to odd rows</td>
+					<td>background-color </td>
+					<td>| color name/value</td>
+				</tr>
+				<tr>
+					<td class="first-column">tr:nth-child(xn)</td>
+					<td>applies the property to every x row (while x is a positive integer number)</td>
+					<td>background-color </td>
+					<td>| color name/value</td>
+				</tr>
+				<tr>
+					<th class="sub-heading"></th>
+					<th class="sub-heading" colspan="3">highlighting of table rows</th>
+				</tr>
+				<tr>
+					<td class="first-column">tr:hover</td>
+					<td>mouse over rows highlight them in the specified color</td>
+					<td>background-color </td>
+					<td>| color name/value</td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</body>
+</html>
