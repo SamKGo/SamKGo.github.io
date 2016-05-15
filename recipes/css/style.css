@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+html {
+	font-family: "verdana", sans-serif;
+	font-size: 12px;
+}
+
+body {
+	margin: 0;
+	width: 100%;
+}
+
+header {
+	width: 100%;
+	background: grey;
+	color: white;
+	text-align: center;
+	min-height: 50px;
+	padding: 15px 0px 15px 0px;
+	margin: 0;
+}
+
+.nav {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	background: rgb(175, 175, 175);
+	margin: 0;
+	width: 100%;
+}
+
+.nav > * {
+	margin: 10px;
+	padding: 10px;
+	background-color: rgb(170, 18, 18);
+	border-radius: 5px;
+}
+
+main {
+	display: flex;
+	flex-flow: row;
+	width: 100%;
+}
+
+div.empty {
+	margin: 0px;
+    padding: 0px; 
+    background-color: lightgrey;
+	flex: 1 1 100vw;
+	min-width: 2vw;
+	max-width: 20vw;
+	box-sizing: border-box;
+}
+
+section {
+	margin: 0px;
+    padding: 0px 20px 20px 20px; 
+    background-color: white;
+	min-width: calc(100vw - 40vw);
+	max-width: calc(100vw - 4vw);
+}
+
+h2 {
+	background: rgb(170, 18, 18);
+	color: white;
+	font-weight: 100;
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+#mojito, #cosmopolitan, #bloody-mary {
+	padding-top: 10px;
+}
+
+img {
+	height: 250px;
+	border: 3px solid grey;
+	padding: 10px;
+}
+
+a {
+	color: white;
+}
+
+p.top {
+	background: rgb(240, 240, 240);
+	font-size: 0.8rem;
+	text-align: center;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+a.link-top {
+	color: rgb(170, 18, 18);
+}
+
+table, tr {
+	border-collapse: collapse;
+	border-bottom: 1px solid grey;
+}
+
+td {
+	text-align: right;
+	width: 90px;
+}
+
+th {
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 25px;
+}
+
+ol {
+	padding-left: 0px;
+	list-style-position: inside;
+}
+
+hr {
+	margin: 0;
+}
+
+footer {
+	color: white;
+	background: gray;
+	margin: 0;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+}
