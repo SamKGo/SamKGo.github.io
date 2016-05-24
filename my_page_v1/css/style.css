@@ -1,0 +1,233 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font-family: "ff-meta-web-pro", "Tahoma", sans-serif;
+	margin: 0;
+}
+
+header {
+	width: 100%;
+	background-image: url("images/my_page_header1.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	min-height: 50px;
+	padding: 15px 0px 15px 0px;
+	margin: 0;
+}
+
+#logo {
+	width: 150px;
+	margin: 50px 10px 0px 10px;
+	float: left;
+	
+}
+
+#title {
+	font-family: "catseye";
+	font-size: 5em;
+	font-weight: normal;
+	line-height: 72px;
+	color: white;
+	text-align: center;
+	text-shadow: 2px 2px 5px #000000;
+	margin: 5% 25% 5% 25%;
+	
+}
+
+nav h1 {
+   	position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+   	height: 1px !important; 
+   	width: 1px !important; 
+   	overflow: hidden;
+}
+
+#nav-main {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	background: rgba(30, 76, 56, 0.5);
+	margin: 0;
+	width: 100%;
+}
+
+#nav-main > * {
+	margin: 10px;
+	padding: 5px 15px 5px 15px;
+	color: white;
+	background-color: rgb(102, 14, 0);
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #000000;
+}
+
+.h1-main {
+	background: rgb(102, 14, 10);
+	font-family: "catseye";
+	font-size: 1.5em;
+	color: white;
+	font-weight: medium;
+	margin-left: 10px;
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 5px #000000;
+}
+
+.h1-main a {
+	color: white;
+}
+
+.h1-aside {
+	background: rgb(102, 14, 0);
+	font-family: "catseye";
+	font-size: 1em;
+	color: white;
+	font-weight: medium;
+	margin: 20px 10px 20px 10px;
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 5px #000000;
+}
+
+main {
+	float: left;
+	position: relative;
+	width: 75%;
+}
+
+hr {
+	margin: 20px 0px 0px 10px;
+	border-color: rgb(151, 178, 166);
+}
+
+article {
+	margin-left: 20px;
+}
+
+h2 {
+	font-size: 1.5em;
+	color: rgb(30, 76, 56);
+}
+
+.date {
+	font-family: "ff-meta-web-pro", "Tahoma", sans-serif;
+	font-size: 0.8em;
+	font-weight: normal italic;
+	font-style: italic;
+	color: rgb(151, 187, 166);
+}
+
+h4 {
+	font-size: 1em;
+}
+
+mark {
+	background-color: rgb(30, 76, 56);
+	color: white;
+	padding: 0px 5px 0px 5px;
+}
+
+figure {
+	float: right;
+}
+
+figcaption {
+	font-size: 0.7em;
+	text-align: center;
+	width: 100%;
+}
+
+a {
+	color: rgb(30, 76, 56);
+}
+
+aside {
+	float: right;
+	position: relative;
+	width: 20%;
+	height: 100vh;
+	background: rgba(0, 25, 14, 0.4);
+}
+
+summary {
+	margin-top: 20px;
+}
+
+.contact {
+	margin-top: 20px;
+	display: inline;
+}
+
+ul {
+	list-style-type: none;
+	
+}
+
+footer {
+	clear: both;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	background: grey;
+	margin: 0;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+}
+
+.footer {
+	color: white;
+	font-size: 0.9em;
+	margin-left: 20px;
+}
+
+/*
+summary::-webkit-details-marker {
+   color:#660E00; 
+   background:#660E00; 
+}
+
+details[open] summary::-webkit-details-marker {
+   color:#660E00; 
+   background:#660E00;
+}
+*/
+
+summary::before {
+	display: none;
+}
+
+summary::-webkit-details-marker {
+   display: none;
+}
+
+summary:after {
+   content: ">";
+   color: #97B2A6;
+   float: left;
+   font-size: 3em;
+   font-weight: bold;
+   margin: -20px 5px 0px 0px;
+}
+
+details[open] summary:after {
+   content: ">";
+   transform: rotate(90deg);
+   color: #97B2A6;
+   margin: -15px 0px 0px 5px;
+}
+
+/*
+summary:before {
+	content: "+";
+}
+
+details[open] summary:before {
+	content: "-";
+}
+*/
