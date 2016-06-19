@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 Animations</title>
+		<link href="images/favicon_sk.ico" rel="shortcut icon" type="image/x-icon">
+		<link href="css/animations_style_v3.css" rel="stylesheet">
+		<script src="https://use.typekit.net/cpp0udo.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+     </head>
+
+	<body onload="init();">
+    	
+        <div id="bg">
+        <h1>Monster(s)</h1>
+    	<canvas id="canvas1" width="500" height="500">Your browser does not support the canvas tag.</canvas>
+       	<img id="image_bg" src="images/canvas1_bg.png" alt="fire background">
+        
+        <div id="animate">
+        <p><button class="button" onclick="start()">Start</button></p>
+    	<p><button class="button" onclick="stop()">Stop</button></p>
+        <p class="slider-bg"><label for="speed">Speed:</label><input id="speed" class="slider" type="range" min="1" max="10" value="1" oninput="changeSpeed(event);"><output id="speedValue">1</output></p>
+        </div>
+        </div>
+        
+        <h2>Inspired by</h2> 
+        <iframe  id="video" width="500" height="300" src="https://www.youtube.com/embed/lk4fxsrJajY" frameborder="0" allowfullscreen></iframe>
+        
+        <script>
+			var canvas, ctx;
+			var width, height;
+			var monsterX1=150, monsterY1=50, monsterAngle1=0;
+			var incX = 1;
+			var size = 100;
+			var monsterX2=0, monsterY2=0, monsterAngle2=0;
+			var spx=-0.5;
+			var spy=-1;
+			var requestID;
+			var img=new Image();
+			
+			function init() {
+				canvas=document.getElementById('canvas1');
+				ctx=canvas.getContext('2d');
+				
+				width = canvas.width;
+      			height = canvas.height;
+			}
+			
+			function animationLoop(timestamp) {
+				
+            	// 1 - Clear
+   				ctx.clearRect(0, 0, canvas.width, canvas.height);
+			
+				// Blur
+			//	ctx.fillStyle = "rgba(117, 76, 36, 0.1)";
+      		//	ctx.fillRect (150,50,200,320);
+
+				// 2 Draw
+				
+   				draw1(monsterX1, monsterY1, monsterAngle1);
+				draw2(monsterX2, monsterY2, monsterAngle2);
+				drawImg();
+				
+   				
+				// 3 Move			
+				monsterX1 -= incX;
+				if(((monsterX1+size) > width) || (monsterX1 <= 0)) {
+					monsterX1 += incX;
+					incX = +incX;
+				}
+				monsterY1 += incX;
+				if(((monsterY1+size) > width) || (monsterY1 <= 0)) {
+					monsterY1 -= incX;
+					incX = -incX;
+				}
+				
+			//	monsterAngle1 -=0.001;
+			
+				monsterX2 = monsterX2 + spx;
+  				if(monsterX2 <= -250 || monsterX2 >= canvas.width - 250)
+    			spx = -spx;
+				
+				monsterY2 = monsterY2 + spy;
+  				if(monsterY2 <= -150 || monsterY2 >= canvas.height - 200)
+    			spy = -spy;
+				
+			//	monsterAngle2 -=0.001;
+				
+				// call again mainloop after 16.6 ms (60 frames/s)
+      			requestId = requestAnimationFrame(animationLoop);
+ 			}
+				
+				// Polyfill for Math.sign not being supported by IE or Safari (it's ecmascript 6)
+    			Math.sign = Math.sign || function(x) {
+  				x = +x; // convert to a number
+  				if (x === 0 || isNaN(x)) {
+    				return x;
+  				}
+  				return x > 0 ? 1 : -1;
+				}
+    
+			function changeSpeed(event) {
+      			incX = Math.sign(incX)*parseInt(event.target.value);
+      			document.getElementById("speedValue").innerHTML = Math.abs(incX);
+			}
+			
+			function draw1(x, y, angle) {
+				ctx.save();
+				
+				ctx.translate(x, y);
+     			ctx.rotate(angle)
+				
+				// Monster eyes open
+				// head
+				ctx.beginPath();
+				ctx.moveTo(150,150);
+				ctx.arcTo(150,50,170,50,50);
+				ctx.arcTo(350,50,350,100,50);
+				ctx.arcTo(350,370,330,370,20);
+				ctx.lineTo(310,370);
+				ctx.lineTo(250,380),
+				ctx.lineTo(190,370);
+				ctx.arcTo(150,370,150,150,20);
+				ctx.closePath();
+				ctx.fillStyle="#754C24";
+				ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=15;     
+        		ctx.shadowOffsetX=-3; 
+        		ctx.shadowOffsetY=3;
+    			ctx.stroke();
+				ctx.restore();
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=15;     
+        		ctx.shadowOffsetX=3; 
+        		ctx.shadowOffsetY=3;
+    			ctx.stroke();
+				ctx.restore();
+				
+				// eyes open
+				// left eye
+				ctx.beginPath();
+				ctx.moveTo(185,130);
+				ctx.arcTo(185,110,220,110,15);
+				ctx.arcTo(240,107,240,130,12);
+				ctx.arcTo(240,150,220,150,10);
+				ctx.arcTo(185,150,185,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=3;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+				
+				ctx.beginPath();
+				ctx.arc(222,132,7,0,2*Math.PI, false);
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+    			ctx.lineWidth=4;
+    			ctx.strokeStyle = "#422B14";
+   				ctx.stroke();
+				
+				// right eye
+				ctx.beginPath();
+				ctx.moveTo(260,130);
+				ctx.arcTo(260,107,290,110,12);
+				ctx.arcTo(315,110,315,130,15);
+				ctx.arcTo(315,150,290,150,10);
+				ctx.arcTo(260,150,260,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=3;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+    			
+				ctx.beginPath();
+				ctx.arc(278,132,7,0,2*Math.PI, false);
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+    			ctx.lineWidth=4;
+    			ctx.strokeStyle="#422B14";
+   				ctx.stroke();
+				
+				// eyes closed
+				// left eye
+				ctx.beginPath();
+				ctx.moveTo(185,130);
+				ctx.arcTo(185,110,220,110,15);
+				ctx.arcTo(240,107,240,150,12);
+				ctx.lineTo(240,128);
+				ctx.lineTo(185,128);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    		//	ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(185,132);
+				ctx.lineTo(240,132);
+				ctx.arcTo(240,150,220,150,10);
+				ctx.arcTo(185,150,185,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    		//	ctx.stroke();
+				
+				// right eye
+				ctx.beginPath();
+				ctx.moveTo(260,130);
+				ctx.arcTo(260,107,290,110,12);
+				ctx.arcTo(315,110,315,130,15);
+				ctx.lineTo(315,128);
+				ctx.lineTo(260,128);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    		//	ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(260,132);
+				ctx.lineTo(315,132);
+				ctx.arcTo(315,150,290,150,10);
+				ctx.arcTo(260,150,260,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    		//	ctx.stroke();
+				
+				// mouth
+				ctx.beginPath();
+				ctx.moveTo(180,200);
+				ctx.arcTo(180,180,250,180,10);
+				ctx.arcTo(250,182,300,180,175);
+				ctx.arcTo(320,180,320,220,10);
+				ctx.arcTo(317,265,250,265,22);
+				ctx.arcTo(183,265,180,220,22);
+				ctx.closePath();
+				ctx.fillStyle = "#422B14";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				// teeth
+				ctx.beginPath();
+				ctx.moveTo(195,180);
+				ctx.lineTo(200,200);
+				ctx.arcTo(205,210,220,185,7);
+				ctx.arcTo(220,185,235,210,1);
+				ctx.arcTo(235,210,250,185,7);
+				ctx.arcTo(250,185,265,210,1);
+				ctx.arcTo(265,210,280,185,7);
+				ctx.arcTo(280,185,295,210,1);
+				ctx.arcTo(295,210,310,185,7);
+				ctx.lineTo(305,180);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				
+				ctx.beginPath();
+				ctx.moveTo(195,265);
+				ctx.lineTo(200,245);
+				ctx.arcTo(205,230,220,260,7);
+				ctx.arcTo(220,260,235,210,1);
+				ctx.arcTo(235,230,250,260,7);
+				ctx.arcTo(250,260,265,210,1);
+				ctx.arcTo(265,230,280,260,7);
+				ctx.arcTo(280,260,295,210,1);
+				ctx.arcTo(295,232,310,260,7);
+				ctx.lineTo(305,265);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				
+				ctx.beginPath();
+				ctx.moveTo(180,200);
+				ctx.arcTo(180,180,250,180,10);
+				ctx.arcTo(250,182,300,180,175);
+				ctx.arcTo(320,180,320,220,10);
+				ctx.arcTo(317,265,250,265,22);
+				ctx.arcTo(183,265,180,220,22);
+				ctx.closePath();
+				ctx.fillStyle = "#422B14";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=7;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+    			
+				// shirt
+				ctx.beginPath();
+				ctx.moveTo(140,290);
+    			ctx.lineTo(250,380);
+    			ctx.lineTo(190,370);
+				ctx.lineTo(152,400);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+    			ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(360,290);
+    			ctx.lineTo(250,380);
+    			ctx.lineTo(310,370);
+				ctx.lineTo(352,400);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+    			ctx.stroke();
+				
+				ctx.restore();
+			}
+			
+			function draw2(x, y, angle) {
+				ctx.save();
+				
+				ctx.translate(x, y);
+     			ctx.rotate(angle)
+				
+				// Monster eyes closed
+				// head
+				ctx.beginPath();
+				ctx.moveTo(150,150);
+				ctx.arcTo(150,50,170,50,50);
+				ctx.arcTo(350,50,350,100,50);
+				ctx.arcTo(350,370,330,370,20);
+				ctx.lineTo(310,370);
+				ctx.lineTo(250,380),
+				ctx.lineTo(190,370);
+				ctx.arcTo(150,370,150,150,20);
+				ctx.closePath();
+				ctx.fillStyle="#754C24";
+				ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=15;     
+        		ctx.shadowOffsetX=-3; 
+        		ctx.shadowOffsetY=3;
+    			ctx.stroke();
+				ctx.restore();
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=15;     
+        		ctx.shadowOffsetX=3; 
+        		ctx.shadowOffsetY=3;
+    			ctx.stroke();
+				ctx.restore();
+				
+				// eyes open
+				// left eye
+				ctx.beginPath();
+				ctx.moveTo(185,130);
+				ctx.arcTo(185,110,220,110,15);
+				ctx.arcTo(240,107,240,130,12);
+				ctx.arcTo(240,150,220,150,10);
+				ctx.arcTo(185,150,185,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=3;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+				
+				ctx.beginPath();
+				ctx.arc(222,132,7,0,2*Math.PI, false);
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+    			ctx.lineWidth=4;
+    			ctx.strokeStyle = "#422B14";
+   				ctx.stroke();
+				
+				// right eye
+				ctx.beginPath();
+				ctx.moveTo(260,130);
+				ctx.arcTo(260,107,290,110,12);
+				ctx.arcTo(315,110,315,130,15);
+				ctx.arcTo(315,150,290,150,10);
+				ctx.arcTo(260,150,260,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=3;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+    			
+				ctx.beginPath();
+				ctx.arc(278,132,7,0,2*Math.PI, false);
+				ctx.fillStyle="#ffffff";
+    			ctx.fill();
+    			ctx.lineWidth=4;
+    			ctx.strokeStyle="#422B14";
+   				ctx.stroke();
+				
+				// eyes closed
+				// left eye
+				ctx.beginPath();
+				ctx.moveTo(185,130);
+				ctx.arcTo(185,110,220,110,15);
+				ctx.arcTo(240,107,240,150,12);
+				ctx.lineTo(240,128);
+				ctx.lineTo(185,128);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(185,132);
+				ctx.lineTo(240,132);
+				ctx.arcTo(240,150,220,150,10);
+				ctx.arcTo(185,150,185,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				// right eye
+				ctx.beginPath();
+				ctx.moveTo(260,130);
+				ctx.arcTo(260,107,290,110,12);
+				ctx.arcTo(315,110,315,130,15);
+				ctx.lineTo(315,128);
+				ctx.lineTo(260,128);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(260,132);
+				ctx.lineTo(315,132);
+				ctx.arcTo(315,150,290,150,10);
+				ctx.arcTo(260,150,260,130,10);
+				ctx.closePath();
+				ctx.fillStyle="#4C3218";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				// mouth
+				ctx.beginPath();
+				ctx.moveTo(180,200);
+				ctx.arcTo(180,180,250,180,10);
+				ctx.arcTo(250,182,300,180,175);
+				ctx.arcTo(320,180,320,220,10);
+				ctx.arcTo(317,265,250,265,22);
+				ctx.arcTo(183,265,180,220,22);
+				ctx.closePath();
+				ctx.fillStyle = "#422B14";
+    			ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+    			ctx.stroke();
+				
+				// teeth
+				ctx.beginPath();
+				ctx.moveTo(195,180);
+				ctx.lineTo(200,200);
+				ctx.arcTo(205,210,220,185,7);
+				ctx.arcTo(220,185,235,210,1);
+				ctx.arcTo(235,210,250,185,7);
+				ctx.arcTo(250,185,265,210,1);
+				ctx.arcTo(265,210,280,185,7);
+				ctx.arcTo(280,185,295,210,1);
+				ctx.arcTo(295,210,310,185,7);
+				ctx.lineTo(305,180);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				
+				ctx.beginPath();
+				ctx.moveTo(195,265);
+				ctx.lineTo(200,245);
+				ctx.arcTo(205,230,220,260,7);
+				ctx.arcTo(220,260,235,210,1);
+				ctx.arcTo(235,230,250,260,7);
+				ctx.arcTo(250,260,265,210,1);
+				ctx.arcTo(265,230,280,260,7);
+				ctx.arcTo(280,260,295,210,1);
+				ctx.arcTo(295,232,310,260,7);
+				ctx.lineTo(305,265);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				
+				ctx.beginPath();
+				ctx.moveTo(180,200);
+				ctx.arcTo(180,180,250,180,10);
+				ctx.arcTo(250,182,300,180,175);
+				ctx.arcTo(320,180,320,220,10);
+				ctx.arcTo(317,265,250,265,22);
+				ctx.arcTo(183,265,180,220,22);
+				ctx.closePath();
+				ctx.fillStyle = "#422B14";
+    		//	ctx.fill();
+				ctx.lineWidth=3;
+				ctx.strokeStyle="#000000";
+				ctx.save();
+				ctx.shadowColor="#422B14";
+        		ctx.shadowBlur=7;     
+        		ctx.shadowOffsetX=0; 
+        		ctx.shadowOffsetY=0;
+    			ctx.stroke();
+				ctx.restore();
+    			
+				// shirt
+				ctx.beginPath();
+				ctx.moveTo(140,290);
+    			ctx.lineTo(250,380);
+    			ctx.lineTo(190,370);
+				ctx.lineTo(152,400);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+    			ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(360,290);
+    			ctx.lineTo(250,380);
+    			ctx.lineTo(310,370);
+				ctx.lineTo(352,400);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+    			ctx.fill();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="#000000";
+				ctx.lineJoin = "round";
+    			ctx.stroke();
+				
+				ctx.restore();
+			}
+			
+			function drawImg() {
+			img.onload = function(){
+    			ctx.drawImage(img,0,0,500,500);
+  				};
+  				img.src = 'images/canvas1_fg.png';
+			}
+			
+			function start() {
+   				// Start the animation loop, targets 60 frames/s
+   				requestId = requestAnimationFrame(animationLoop);
+ 			}
+ 			function stop() {
+  				if (requestId) {
+    			  cancelAnimationFrame(requestId);
+   				}
+ 			}
+			
+		</script>
+	</body>
+</html>
